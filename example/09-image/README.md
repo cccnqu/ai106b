@@ -13,3 +13,8 @@ $ live-server
 
 * 影像灰階範例 -- http://localhost:8080/imageGray.html
 * 影像操作範例 -- http://localhost:8080/imageOp.html
+
+## 進階 -- 電腦視覺套件 jsfet
+
+* https://github.com/inspirit/jsfeat
+  * https://inspirit.github.io/jsfeat/

@@ -1,5 +1,0 @@
-* [人工智慧](ai)
-* [交談機器人](chatbot)
-* [影片](video)
-* [數學](math)
-* [參考](reference)

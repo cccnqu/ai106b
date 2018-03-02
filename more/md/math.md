@@ -1,1 +1,0 @@
-![equation](http://latex.codecogs.com/gif.latex?\frac{a}{b}&space;\sum\bigcup\sum{\int_0^{\infty}f(x)&space;dx})

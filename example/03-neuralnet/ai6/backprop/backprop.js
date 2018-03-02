@@ -63,11 +63,11 @@ function NeuralNet() {
     this.ai = makeArray(this.ni, 1.0);
     this.ah = makeArray(this.nh, 1.0);
     this.ao = makeArray(this.no, 1.0);
-
+        
     // create weights : 建立權重矩陣
     this.wi = makeMatrix(this.ni, this.nh, 0.0);
     this.wo = makeMatrix(this.nh, this.no, 0.0);
-
+		
     // set them to random vaules : 隨機設定權重初始值。
     for (var i=0; i<this.ni; i++)
       for (var j=0; j<this.nh; j++)
@@ -81,7 +81,7 @@ function NeuralNet() {
     this.co = makeMatrix(this.nh, this.no, 0.0);
     return this;
   }
-
+	
   // update() : 計算網路的輸出的函數
   this.update=function(inputs) {
     // input activations : 設定輸入值
@@ -121,9 +121,9 @@ function NeuralNet() {
     for (var j=0; j<this.nh; j++) {
       var error = 0.0;
       for (var k=0; k<this.no; k++) {
-        // 注意、在此輸出層誤差 output_deltas 會反傳遞到隱藏層，因此才稱為反傳遞演算法。
+			  // 注意、在此輸出層誤差 output_deltas 會反傳遞到隱藏層，因此才稱為反傳遞演算法。
         error = error + output_deltas[k]*this.wo[j][k]; 
-      }
+		  }
       hidden_deltas[j] = dsigmoid(this.ah[j]) * error;
     }
 
@@ -153,7 +153,7 @@ function NeuralNet() {
     return error;
   }
 
-    // test() : 對真值表 (訓練樣本) 中的每個輸入都印出「網路輸出」與「期望輸出」，以便觀察學習結果是否都正確。
+	// test() : 對真值表 (訓練樣本) 中的每個輸入都印出「網路輸出」與「期望輸出」，以便觀察學習結果是否都正確。
   this.test = function(patterns) {
     for (var p in patterns) {
       var inputs = patterns[p][0];
@@ -163,8 +163,8 @@ function NeuralNet() {
     }
   }
 
-    // train(): 主要學習函數，反覆呼叫反傳遞算法
-    // 參數：rate: learning rate (學習速率), moment: momentum factor (動量常數)
+	// train(): 主要學習函數，反覆呼叫反傳遞算法
+	// 參數：rate: learning rate (學習速率), moment: momentum factor (動量常數)
   this.train=function(patterns, iterations, rate, moment) {
     for (var i=0; i<iterations; i++) {
       var error = 0.0;
@@ -182,3 +182,30 @@ function NeuralNet() {
 }
 
 module.exports = NeuralNet; // 匯出 NeuralNet 物件。
+
+/*
+	// dump() : 印出此神經網路以便觀察的函數。
+  this.dump = function() {
+    log("  ai=%s", numbersToStr(this.ai, 2));
+    for (var i=0; i<this.wi.length; i++)
+      log("    %s", numbersToStr(this.wi[i], 2));
+    log("  ah=%s", numbersToStr(this.ah, 2));
+    for (var i=0; i<this.wo.length; i++)
+      log("    %s", numbersToStr(this.wo[i], 2));
+    log("  ao=%s", numbersToStr(this.ao, 2));
+  }
+
+	// sigmoid(x)=tanh(x)
+function sigmoid(x) {
+  return tanh(x); // 雙曲正切函數 (表現較好)
+//  return 1.0/(1.0+Math.pow(Math.E, -x)); // or sigmoid(x)=1/(1+e^-x) (表現不夠好)
+}
+// dsigmoid(x)=1-x^2;
+// 參考：http://pynopticon.googlecode.com/svn/trunk/src/vlfeat/toolbox/special/dsigmoid.m
+// 參考：http://en.wikipedia.org/wiki/Sigmoid_function
+function dsigmoid(x) {
+  return 1.0 - x*x;
+//  return x*(1.0-x); // or dsigmoid=x*(1-x)
+}
+
+*/
