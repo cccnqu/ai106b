@@ -76,7 +76,11 @@ function dfs(from, to) {
 //  log("=========================");
 //  log(fs);
   if (from === null) return false;
-  if (fs === ts) return true;
+  if (fs === ts) {
+    log("=========================");
+    log(fs);
+    return true;
+  }
   if (visited[fs] === undefined) {
     visited[fs] = true;
     log("=========================");
