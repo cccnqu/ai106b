@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/cccnqu/ai106b#readme",
   "dependencies": {
-    "j6": "^1.0.2"
+    "adnn": "^2.0.10",
+    "convnetjs": "^0.3.0",
+    "dnn": "^0.1.0",
+    "j6": "^1.0.2",
+    "jimp": "^0.2.28",
+    "keras-js": "^1.0.3"
   }
 }

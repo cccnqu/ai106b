@@ -38,7 +38,7 @@ async function imagePredict (file) { // predict
     var image = await Jimp.read(file)
     var image32 = image.resize(32, 32)
     var x = image2sample(image32.bitmap)
-    var pretrainedJson = require('./cifar10/cifar10_snapshot.json')
+    var pretrainedJson = require('./cifar10_snapshot.json')
     var net = loadNet(pretrainedJson)
     var yhat = predict(net, x)
     console.log('yhat=%j class=%s', yhat, classes[yhat])

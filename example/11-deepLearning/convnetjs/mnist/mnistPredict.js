@@ -34,11 +34,13 @@ async function imagePredict (file) { // predict
     var image = await Jimp.read(file)
     var image28 = image.resize(28, 28)
     var x = image2sample(image28.bitmap)
-    var pretrainedJson = require('./mnist/mnist_snapshot.json')
+    var pretrainedJson = require('./mnist_snapshot.json')
     var net = loadNet(pretrainedJson)
     var yhat = predict(net, x)
     console.log('yhat=%j class=%s', yhat, classes[yhat])
   } catch (error) { throw error }
 }
 
-imagePredict(process.argv[2])
+imagePredict(process.argv[2]).catch (function(error) {
+  console.log('error=', error)
+})
