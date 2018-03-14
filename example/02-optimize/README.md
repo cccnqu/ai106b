@@ -4,11 +4,11 @@
 
 ```js
 Algorithm HillClimbing(f, x)
-  x = 隨意設定一個解。
-  while (x 有鄰居 x' 比 x 更高)
-    x = x';
+  x = 隨意設定一個解
+  while (x 有鄰居 x1 比 x 更高)
+    x = x1
   end
-  return x;
+  return x
 end
 ```
 
