@@ -24,7 +24,7 @@ var Perceptron = function() { // 感知器物件
         dw[0] = rate * x[0] * e; w[0] += dw[0]; // w[0] 的調整幅度為 dw[0]
         dw[1] = rate * x[1] * e; w[1] += dw[1]; // w[1] 的調整幅度為 dw[1]
         dw[2] = rate * x[2] * e; w[2] += dw[2]; // w[2] 的調整幅度為 dw[2]
-        if (loop % 10 == 0 || Math.abs(eSum) < 0.0001)
+        if (loop % 10 == 0)
           log("%d:x=(%s,%s,%s) w=(%s,%s,%s) y=%s yd=%s e=%s", loop, 
                x[0].toFixed(3), x[1].toFixed(3), x[2].toFixed(3), 
                w[0].toFixed(3), w[1].toFixed(3), w[2].toFixed(3), 
