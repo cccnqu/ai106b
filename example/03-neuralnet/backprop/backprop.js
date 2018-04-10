@@ -163,8 +163,8 @@ function NeuralNet() {
     }
   }
 
-    // train(): 主要學習函數，反覆呼叫反傳遞算法
-    // 參數：rate: learning rate (學習速率), moment: momentum factor (動量常數)
+  // train(): 主要學習函數，反覆呼叫反傳遞算法
+  // 參數：rate: learning rate (學習速率), moment: momentum factor (動量常數)
   this.train=function(patterns, iterations, rate, moment) {
     for (var i=0; i<iterations; i++) {
       var error = 0.0;
