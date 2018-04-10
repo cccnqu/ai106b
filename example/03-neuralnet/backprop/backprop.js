@@ -127,7 +127,7 @@ function NeuralNet() {
       hidden_deltas[j] = dsigmoid(this.ah[j]) * error;
     }
 
-    // forward output weights : 更新輸出層權重
+    // update output weights : 更新輸出層權重
     for (var j=0; j<this.nh; j++) {
       for (var k=0; k<this.no; k++) {
         var change = output_deltas[k]*this.ah[j];
@@ -137,7 +137,7 @@ function NeuralNet() {
       }
     }
 
-    // forward input weights : 更新輸入層權重
+    // update input weights : 更新輸入層權重
     for (var i=0; i<this.ni; i++) {
       for (var j=0; j<this.nh; j++) {
         var change = hidden_deltas[j]*this.ai[i];
