@@ -22,6 +22,7 @@
   "dependencies": {
     "adnn": "^2.0.10",
     "convnetjs": "^0.3.0",
+    "deeplearn": "^0.5.1",
     "dnn": "^0.1.0",
     "j6": "^1.0.2",
     "jimp": "^0.2.28",

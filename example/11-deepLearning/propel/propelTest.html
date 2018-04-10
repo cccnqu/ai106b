@@ -1,0 +1,18 @@
+<html>
+<body>
+    <script src="https://unpkg.com/propel@3.2.0"></script>
+    <script>
+var linspace = propel.linspace
+var grad = propel.grad
+var plot = propel.plot
+f = x => x.tanh();
+x = linspace(-4, 4, 200);
+plot(x, f(x),
+     x, grad(f)(x),
+     x, grad(grad(f))(x),
+     x, grad(grad(grad(f)))(x),
+     x, grad(grad(grad(grad(f))))(x))
+    </script>
+    <div class="output"></div>
+</body>
+</html>
