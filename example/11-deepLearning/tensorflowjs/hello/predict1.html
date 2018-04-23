@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.8.0"> </script>
+
+    <!-- Place your code in the script tag below. You can also use an external .js file -->
+    <script>
+   function predict (input) {
+    // y = a*x^2 + b*x + c
+    return tf.tidy(() => {
+        const x = tf.scalar(input);
+
+        const ax2 = a.mul(x.square());
+        const bx = b.mul(x);
+        const y = ax2.add(bx).add(c);
+        
+        return y;
+    });
+}
+
+// 定义常量
+const a = tf.scalar(2);
+const b = tf.scalar(4);
+const c = tf.scalar(8);
+
+// 对于2预测输出
+const result = predict(2);
+result.print(); // Tensor 24
+    </script>
+  </head>
+
+  <body>
+  </body>
+</html>

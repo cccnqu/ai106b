@@ -1,8 +1,8 @@
 // ref: https://jsfiddle.net/wagenaartje/k23zbf0f/1/
 var neataptic = require('neataptic')
-var Methods = neataptic.Methods
-var Config = neataptic.Config
-var Architect = neataptic.Architect
+var Methods = neataptic.methods
+var Config = neataptic.config
+var Architect = neataptic.architect
 
 var LSTM = module.exports = {
   mode: 'char',
@@ -60,7 +60,7 @@ LSTM.dataTrain = function (dataSet, words) {
   network.train(dataSet, {
     log: 1,
     rate: 0.1,
-    cost: Methods.Cost.MSE,
+    cost: Methods.cost.MSE,
     error: 0.01,
     clear: true
   })

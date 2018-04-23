@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.8.0"> </script>
+
+    <!-- Place your code in the script tag below. You can also use an external .js file -->
+    <script>
+// 程式來源 -- http://www.cnblogs.com/zhuzhenwei918/p/8831267.html
+let shape = [2, 3]; // 2行，3列
+let a = tf.tensor([1.0, 2.0, 3.0, 10.0, 20.0, 30.0], shape);
+a.print();
+console.log(Object.prototype.toString.call(a));
+
+let b = tf.tensor([[1.0, 2.0, 3.0], [10.0, 20.0, 30.0]]);
+b.print();
+
+a = tf.scalar(3.14);
+a.print(); // 输出零维张量
+
+b = tf.tensor2d([[2, 3, 4], [5, 6, 7]]);
+b.print(); // 输出二维张量
+
+let c = tf.zeros([2, 3]);
+c.print(); // 输出2行3列的值全是0的张量
+
+let d = tf.ones([3, 5]);
+d.print(); // 输出3行5列的值全是1的张量
+
+a = tf.tensor2d([[5.0, 6.0], [7.0, 8.0]]);
+b = tf.tensor2d([[1.0, 2.0], [3.0, 4.0]]);
+
+let a_plus_b = a.add(b);
+a_plus_b.print();
+
+a_sub_b = a.sub(b);
+a_sub_b.print();
+
+a_mul_b = a.mul(b);
+a_mul_b.print();
+
+a = tf.tensor2d([[2.0, 2.0], [2.0, 2.0]]);
+b = tf.tensor2d([[3.0, 3.0], [3.0, 3.0]]);
+c = tf.tensor2d([[5.0, 5.0], [5.0, 5.0]]);
+const res = a.add(b).square().sub(c);
+res.print();
+
+
+    </script>
+  </head>
+
+  <body>
+  </body>
+</html>
