@@ -25,6 +25,6 @@ pat = [
 // create a network with 7 input, 5 hidden, and 4 output nodes
 nn = new NN().init(7, 5, 4);
 // train it with some patterns
-nn.train(pat, 10000, 0.2, 0.01);
+nn.train(pat, 10000, 0.02, 0.01);
 // test it
 nn.test(pat);

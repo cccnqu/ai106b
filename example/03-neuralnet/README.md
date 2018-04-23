@@ -79,7 +79,7 @@ https://github.com/dennybritz/rnn-tutorial-rnnlm/
 
 [Recurrent Neural Network系列1--RNN（循环神经网络）概述](http://www.cnblogs.com/zhbzz2007/p/6257247.html)
 
-[Recurrent Neural Network系列2--利用Python，Theano实现RNN](http://www.cnblogs.com/zhbzz2007/p/6291652.html
+[Recurrent Neural Network系列2--利用Python，Theano实现RNN](http://www.cnblogs.com/zhbzz2007/p/6291652.html)
 
 [Recurrent Neural Network系列3--理解RNN的BPTT算法和梯度消失](http://www.cnblogs.com/zhbzz2007/p/6339346.html)
 
