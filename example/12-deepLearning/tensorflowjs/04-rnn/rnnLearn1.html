@@ -1,0 +1,73 @@
+<html>
+<body>
+<script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0'></script> 
+<script>
+// 程式來源: https://github.com/tensorflow/tfjs-layers/blob/master/src/layers/recurrent_test.ts
+const sequenceLength = 3;
+const inputSize = 4;
+const batchSize = 5;
+
+const simpleRNN = tf.layers.lstm({
+  units: 1,
+  kernelInitializer: 'zeros',
+  recurrentInitializer: 'zeros',
+  useBias: false,
+});
+
+/*
+
+const simpleRNN = tf.layers.simpleRNN({
+  units: 1,
+  kernelInitializer: 'ones',
+  recurrentInitializer: 'ones',
+  useBias: false,
+});
+
+const simpleRNN = tf.layers.gru({
+  units: 1,
+  kernelInitializer: 'zeros',
+  recurrentInitializer: 'zeros',
+  useBias: false
+});
+
+const simpleRNN = tf.layers.lstm({
+  units: 1,
+  kernelInitializer: 'zeros',
+  recurrentInitializer: 'zeros',
+  useBias: false,
+});
+*/
+const dense = tf.layers.dense({
+  units: 1,
+  kernelInitializer: 'ones',
+  useBias: false,
+});
+
+const sgd = tf.train.sgd(5);
+const x = tf.ones([batchSize, sequenceLength, inputSize]);
+const y = tf.zeros([batchSize, 1]);
+dense.apply(simpleRNN.apply(x));
+const lossFn = () => {
+  return tf.mean(tf.metrics.meanSquaredError(y, dense.apply(simpleRNN.apply(x)))).asScalar();
+};
+for (let i = 0; i < 2; ++i) {
+  sgd.minimize(lossFn);
+}
+console.log('simpleRNN.getWeights()[0]=', simpleRNN.getWeights()[0])
+console.log('simpleRNN.getWeights()[1]=', simpleRNN.getWeights()[1])
+console.log('dense.getWeights()[0]=', dense.getWeights()[0])
+/*
+    expectTensorsClose(
+        simpleRNN.getWeights()[0],
+        K.scalarTimesArray(scalar(0.8484658), K.ones([4, 1])));
+    expectTensorsClose(
+        simpleRNN.getWeights()[1],
+        K.scalarTimesArray(scalar(0.8484799), K.ones([1, 1])));
+    expectTensorsClose(
+        dense.getWeights()[0],
+        K.scalarTimesArray(scalar(80.967026), K.ones([1, 1])));
+  });
+*/
+</script>
+</body>
+</html>

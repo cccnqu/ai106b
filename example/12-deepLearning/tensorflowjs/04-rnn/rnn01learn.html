@@ -1,0 +1,57 @@
+<html>
+<body>
+<script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0'></script> 
+<script>
+// 程式來源: https://github.com/tensorflow/tfjs-layers/blob/master/src/layers/recurrent_test.ts
+const sequenceLength = 9
+const inputSize = 1
+const batchSize = 3
+
+const simpleRNN = tf.layers.lstm({
+  units: 1,
+  kernelInitializer: 'zeros',
+  recurrentInitializer: 'zeros',
+  useBias: false,
+})
+
+const dense = tf.layers.dense({
+  units: 1,
+  kernelInitializer: 'ones',
+  useBias: false,
+})
+
+const sgd = tf.train.sgd(5)
+const x = tf.tensor3d([0,0,1,0,0,1,
+                       0,1,0,0,1,0,
+                       1,0,0,1,0,0 ],[3,6,1])
+const y = tf.tensor2d([0,0,1], [3,1])
+dense.apply(simpleRNN.apply(x))
+const lossFn = () => {
+  let loss = tf.mean(tf.metrics.meanSquaredError(y, dense.apply(simpleRNN.apply(x)))).asScalar()
+  console.log('loss=', loss.toString())
+  return loss
+}
+const MAX_LOOPS = 100
+for (let i = 0; i < MAX_LOOPS; ++i) {
+  let loss = sgd.minimize(lossFn)
+  // console.log("Loss after Epoch " + i + " : " + loss);
+}
+console.log('simpleRNN.getWeights()[0]=', simpleRNN.getWeights()[0].toString())
+console.log('simpleRNN.getWeights()[1]=', simpleRNN.getWeights()[1].toString())
+console.log('dense.getWeights()[0]=', dense.getWeights()[0].toString())
+
+/*
+    expectTensorsClose(
+        simpleRNN.getWeights()[0],
+        K.scalarTimesArray(scalar(0.8484658), K.ones([4, 1])));
+    expectTensorsClose(
+        simpleRNN.getWeights()[1],
+        K.scalarTimesArray(scalar(0.8484799), K.ones([1, 1])));
+    expectTensorsClose(
+        dense.getWeights()[0],
+        K.scalarTimesArray(scalar(80.967026), K.ones([1, 1])));
+  });
+*/
+</script>
+</body>
+</html>

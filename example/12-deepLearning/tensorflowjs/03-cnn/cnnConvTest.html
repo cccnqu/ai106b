@@ -1,0 +1,38 @@
+<html>
+<body>
+<script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0'></script> 
+<script>
+// 程式來源: https://github.com/tensorflow/tfjs-layers/blob/master/src/layers/convolutional_test.ts
+const useBias = true
+const biasInitializer = 'zeros'
+const activation = 'relu'
+const x4by4Data = [[[
+  [10, 30, 50, 70], [20, 40, 60, 80], [-10, -30, -50, -70],
+  [-20, -40, -60, -80]
+]]];
+const x = tf.tensor4d(x4by4Data, [1, 1, 4, 4]);
+const conv2dLayer = tf.layers.conv2d({
+  filters: 1,
+  kernelSize: [2, 2],
+  strides: [2, 2],
+  dataFormat: 'channelsFirst',
+  useBias,
+  kernelInitializer: 'ones',
+  biasInitializer,
+  activation
+});
+const y = conv2dLayer.apply(x)
+console.log('y=', y)
+/*
+let yExpectedData = [100, 260, -100, -260];
+if (useBias && biasInitializer === 'ones') {
+  yExpectedData = yExpectedData.map(element => element + 1);
+}
+if (activation === 'relu') {
+  yExpectedData = yExpectedData.map(element => element >= 0 ? element : 0);
+}
+const yExpected = tf.tensor4d(yExpectedData, [1, 1, 2, 2]);
+*/
+</script>
+</body>
+</html>

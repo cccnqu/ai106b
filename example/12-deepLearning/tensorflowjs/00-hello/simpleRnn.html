@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.9.0"> </script>
+    <script>
+const data = tf.tensor2d([0,0,1,0,0,1,0,0,1], [9, 1]);
+const labels = tf.tensor2d([0, 1, 0, 0, 1, 0, 0, 1, 0], [9, 1]);
+// const data   = [[0], [0], [1], [0], [0], [1], [0], [0], [1]]
+// const labels = [0, 1, 0, 0, 1, 0, 0, 1, 0]
+const LEARNING_RATE = 0.01
+const model = tf.sequential();
+model.add(
+  tf.layers.simpleRNN({
+    units: 2,
+    recurrentInitializer: 'GlorotNormal',
+    inputShape: [1, 9]
+  })
+);
+
+const optimizer = tf.train.sgd(LEARNING_RATE);
+model.compile({optimizer, loss: 'categoricalCrossentropy'});
+model.fit({x: data, y: labels});
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

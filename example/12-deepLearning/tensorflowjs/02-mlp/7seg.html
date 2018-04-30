@@ -1,0 +1,71 @@
+<html>
+<body>
+<script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0'></script> 
+<script>
+const inputs = [
+// A B C D E F G 
+  [1,1,1,1,1,1,0], // 0
+  [0,1,1,0,0,0,0], // 1
+  [1,1,0,1,1,0,1], // 2
+  [1,1,1,1,0,0,1], // 3
+  [0,1,1,0,0,1,1], // 4
+  [1,0,1,1,0,1,1], // 5
+  [1,0,1,1,1,1,1], // 6
+  [1,1,1,0,0,0,0], // 7
+  [1,1,1,1,1,1,1], // 8
+  [1,1,1,1,0,1,1], // 9
+]
+
+const outs = [
+   [0,0,0,0], // 0
+   [0,0,0,1], // 1
+   [0,0,1,0], // 2
+   [0,0,1,1], // 3
+   [0,1,0,0], // 4
+   [0,1,0,1], // 5
+   [0,1,1,0], // 6
+   [0,1,1,1], // 7
+   [1,0,0,0], // 8
+   [1,0,0,1]  // 9
+]
+
+function build() {
+  // Create a simple model.
+  const model = tf.sequential()
+  model.add(tf.layers.dense({units: 5, inputShape: [7], useBias: true, activation: 'tanh'}))
+  model.add(tf.layers.dense({units: 4, useBias: true, activation: 'tanh'}))
+  // Prepare the model for training: Specify the loss and the optimizer.
+  model.compile({
+    loss: 'meanSquaredError',
+    optimizer: 'sgd'
+  })
+  return model
+}
+
+async function train(model, inputs, outs) {
+  const xs = tf.tensor2d(inputs, [10, 7])
+  const ys = tf.tensor2d(outs, [10, 4])
+  for (let i = 1; i < 200 ; ++i) {
+    const h = await model.fit(xs, ys, { batchSize: 4, epochs: 10 })
+    console.log('Loss after Epoch ' + i + ' : ' + h.history.loss[0])
+    if (h.history.loss[0] < 0.01) break
+  }
+}
+
+function predict(model, inputs) {
+  for (let i=0; i<inputs.length; i++) {
+    console.log('i:', inputs[i], 'o:', outs[i], '=>', model.predict(tf.tensor2d(inputs[i], [1,7])).toString())
+  }
+  // console.log('[0,1,1,0,0,0,0]=>', model.predict(tf.tensor2d([0,1,1,0,0,0,0], [1,7])).toString())
+}
+
+async function run() {
+  let model = build()
+  await train(model, inputs, outs)
+  predict(model, inputs)
+}
+
+run()
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.9.0"> </script>
+
+    <!-- Place your code in the script tag below. You can also use an external .js file -->
+    <script>
+const rnn = tf.layers.simpleRNN({units: 8, returnSequences: true});
+
+// Create an input with 10 time steps.
+const input = tf.input({shape: [10, 20]});
+const output = rnn.apply(input);
+
+console.log(JSON.stringify(output.shape));
+// [null, 10, 8]: 1st dimension is unknown batch size; 2nd dimension is the
+// same as the sequence length of [tf.input()](#input), due to `returnSequences`: `true`;
+// 3rd dimension is the `SimpleRNNCell`'s number of units.
+    </script>
+  </head>
+
+  <body>
+  </body>
+</html>

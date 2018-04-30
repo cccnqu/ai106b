@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-teal.min.css" />
+  </head>
+  
+  <style>
+    body {
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      margin-top: 50px;
+      margin-left: 50px;
+    }
+    .equation-div {
+      font-family: monospace;
+      margin-bottom: 1em;
+    }
+    .input-div {
+      margin-bottom: 1em;
+    }
+    input {
+      width: 5em;
+      text-align: center;
+    }
+  </style>
+  
+  <body>
+    <h1>TensorFlow.js: Polynomial Regression Training Example</h1>
+    <div>
+      <canvas id="canvas" height="600" width="800"></canvas>
+    </div>
+    <div>
+      <div class="equation-div">
+        <div>Truth equation:</div>
+        <span>y =</span>
+        <input id="cubic-coeff" value="6e-6"></input>
+        <span>* x^3 +</span>
+        <input id="quad-coeff" value="-2e-3"></input>
+        <span>* x^2 +</span>
+        <input id="linear-coeff" value="0.1"></input>
+        <span>* x +</span>
+        <input id="const-coeff" value="10"></input>
+      </div>
+      <div class="input-div">
+        <span>Learning rate:</span>
+        <input id="learning-rate" value="0.5"></input>
+      </div>
+      <div class="input-div">
+        <span>Epochs:</span>
+        <input id="epochs" value="40"></input>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vega@3.3.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@2.3.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3.7.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0"> </script>    
+    <script src="index.js"></script>
+  </body>
+</html>

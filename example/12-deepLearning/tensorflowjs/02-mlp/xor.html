@@ -1,0 +1,44 @@
+<!-- This tiny example illustrates how little code is necessary build
+/ train / predict from a model in TensorFlow.js.  Edit the associated
+index.js code and refresh this file in your browser to quickly
+explore the API. -->
+<html>
+  <head>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0"></script> 
+<script>
+// 注意看 Model 的用法 -- https://js.tensorflow.org/api/0.10.0/#class:Model
+async function run() {
+  // Create a simple model.
+  const model = tf.sequential();
+  model.add(tf.layers.dense({units: 3, inputShape: [2], useBias: true, activation: 'tanh'}));
+  model.add(tf.layers.dense({units: 1, useBias: true, activation: 'tanh'}));
+  // Prepare the model for training: Specify the loss and the optimizer.
+  model.compile({
+    loss: 'meanSquaredError',
+    optimizer: 'sgd'
+  });
+  // Generate some synthetic data for training. 
+  const xs = tf.tensor2d([0,0, 0,1, 1,0, 1,1], [4, 2]);
+  // const ys = tf.tensor2d([0,   0,   0,   1  ], [4, 1]); // And Gate
+  // const ys = tf.tensor2d([0,   1,   1,   1  ], [4, 1]); // Or Gate
+  const ys = tf.tensor2d([0,   1,   1,   0  ], [4, 1]); // Xor Gate
+  for (let i = 1; i < 200 ; ++i) {
+   const h = await model.fit(xs, ys, {
+       batchSize: 4,
+       epochs: 10
+   });
+   console.log("Loss after Epoch " + i + " : " + h.history.loss[0]);
+  }
+  console.log('[0,0]=>', model.predict(tf.tensor2d([0,0], [1,2])).toString())
+  console.log('[0,1]=>', model.predict(tf.tensor2d([0,1], [1,2])).toString())
+  console.log('[1,0]=>', model.predict(tf.tensor2d([1,0], [1,2])).toString())
+  console.log('[1,1]=>', model.predict(tf.tensor2d([1,1], [1,2])).toString())
+}
+
+run();
+</script>
+  </body>
+</html>
+  

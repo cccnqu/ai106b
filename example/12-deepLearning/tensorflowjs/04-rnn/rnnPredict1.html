@@ -1,0 +1,56 @@
+<html>
+<body>
+<script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0'></script> 
+<script>
+const input = new tf.SymbolicTensor('float32', [9, 10, 8], null, [], null);
+const simpleRNN = tf.layers.simpleRNN({
+  units: 5,
+  returnSequences: true,
+  returnState: true,
+});
+const output = simpleRNN.apply(input)
+console.log(output.length)
+console.log(output[0].shape)
+console.log(output[1].shape)
+/*
+expect(output.length).toEqual(2);
+expect(output[0].shape).toEqual([9, 10, 5]);
+expect(output[1].shape).toEqual([9, 5]);
+*/
+/*
+it('returnSequences=false, returnState=true', () => {
+    const input =
+        new tfl.SymbolicTensor(DType.float32, [9, 10, 8], null, [], null);
+    const simpleRNN = tfl.layers.simpleRNN({units: 5, returnState: true});
+    const output = simpleRNN.apply(input) as tfl.SymbolicTensor[];
+    expect(output.length).toEqual(2);
+    expect(output[0].shape).toEqual([9, 5]);
+    expect(output[1].shape).toEqual([9, 5]);
+  });
+
+  it('returnSequences=true, returnState=false', () => {
+    const input =
+        new tfl.SymbolicTensor(DType.float32, [9, 10, 8], null, [], null);
+    const simpleRNN = tfl.layers.simpleRNN({units: 5, returnSequences: true});
+    const output = simpleRNN.apply(input) as tfl.SymbolicTensor;
+    expect(output.shape).toEqual([9, 10, 5]);
+  });
+
+  it('returnSequences=true, returnState=true', () => {
+    const input =
+        new tfl.SymbolicTensor(DType.float32, [9, 10, 8], null, [], null);
+    const simpleRNN = tfl.layers.simpleRNN({
+      units: 5,
+      returnSequences: true,
+      returnState: true,
+    });
+    const output = simpleRNN.apply(input) as tfl.SymbolicTensor[];
+    expect(output.length).toEqual(2);
+    expect(output[0].shape).toEqual([9, 10, 5]);
+    expect(output[1].shape).toEqual([9, 5]);
+  });
+});
+*/
+</script>
+</body>
+</html>
