@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Word 2 Vec</title>
+	<script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.sound.js"></script>
+  <!--<script src="data/wordvecs1000.js"></script>-->
+  <script src="word2vec.js"></script>
+	<script src="sketch.js"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h1>Word2Vec</h1>
+		</div>
+
+		<div class="row" id="loadHide">
+			<div class="col-lg-4">
+				<p>
+					<input type="text" value="rainbow" id="nearword"></input>
+					<button id="submit" class="btn btn-primary">is similar to ...</button>
+				</p>
+				<p id="results"></p>
+			</div>
+
+			<div class="col-lg-4">
+				<p>
+					Between
+					<input type="text" value="rainbow" id="between1"></input> and
+					<input type="text" value="kitten" id="between2"></input>
+					<button id="submit2" class="btn btn-primary">is ...</button>
+				</p>
+				<p id="results2"></p>
+			</div>
+
+			<div class="col-lg-4">
+				<p>
+					<input type="text" value="king" id="isto1"></input> is to
+					<input type="text" value="queen" id="isto2"></input> as
+					<input type="text" value="man" id="isto3"></input>
+					<button id="submit3" class="btn btn-primary">is to ...</button>
+				</p>
+				<p id="results3"></p>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

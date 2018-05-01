@@ -1,0 +1,59 @@
+<html>
+<body>
+<script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0'></script> 
+<script>
+const inputs = [0,0,1,0,0,1,
+                0,1,0,0,1,0,
+                1,0,0,1,0,0 ]
+const outs = [0,0,1]
+
+const batchSize = 3
+const sequenceLength = 6
+const inputSize = 1
+const LEARNING_RATE = 0.15
+
+const xs = tf.tensor3d(inputs, [batchSize, sequenceLength, inputSize])
+const ys = tf.tensor2d(outs, [batchSize, inputSize])
+
+console.log('xs=', xs.toString())
+console.log('ys=', ys.toString())
+
+function build() {
+  const model = tf.sequential()
+  model.add(tf.layers.simpleRNN({ units: 1, inputShape: [sequenceLength, inputSize], useBias: true }))
+  const optimizer = tf.train.adam(LEARNING_RATE);
+  model.compile({ loss: 'binaryCrossentropy', optimizer: optimizer, metrics: ['accuracy'] })
+  return model
+}
+
+async function train(model, inputs, outs) {  
+  for (let i = 1; i < 100 ; ++i) {
+    const h = await model.fit(xs, ys, { batchSize: 3, epochs: 1 })
+    console.log('Loss after Epoch ' + i + ' : ' + h.history.loss[0])
+    if (h.history.loss[0] < 0.01) break
+  }
+}
+
+function predict(model, inputs) {
+  for (let i=0; i<xs.shape[0]; i++) {
+    console.log('i:', inputs[i], 'o:', outs[i], '=>', model.predict(xs.slice([i,0,0], [1,xs.shape[1], xs.shape[2]])).toString())
+  }
+}
+
+async function run() {
+  try {
+    console.log('build...')
+    let model = build()
+    console.log('train...')
+    await train(model, inputs, outs)
+    console.log('predict...')
+    predict(model, inputs)
+  } catch (error) {
+    console.log('error=', error)
+  }
+}
+
+run()
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
+}
+
+input, .btn {
+  padding: 5px;
+  margin: 5px;
+}
+
+.row > div {
+    margin-top:10px;
+    padding: 20px;
+    outline: 2px solid #ccc;
+    outline-offset: -10px;
+    -moz-outline-radius: 10px;
+    -webkit-outline-radius: 10px;
+ }
