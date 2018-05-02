@@ -1,4 +1,4 @@
-var util = require("util");
+var util = require('util');
 
 var printf = function() {
   return process.stdout.write(util.format.apply(null, arguments)); 
@@ -22,7 +22,7 @@ function init(g) { // 初始化、設定 visited 為 0
 
 function dfs(g, node) { // 深度優先搜尋
   if (g[node].v !=0) return;   // 如果已訪問過，就不再訪問
-  printf("%d=>", node);       // 否則、印出節點
+  printf('%d=>', node);       // 否則、印出節點
   g[node].v = 1;              //   並設定為已訪問
   var neighbors = g[node].n;  // 取出鄰居節點
   for (var i in neighbors) {  // 對於每個鄰居
@@ -39,7 +39,7 @@ function bfs(g, q) { // 廣度優先搜尋
     g[node].v = 1;           //   標示為已拜訪
   else                       // 否則 (已訪問過)
     return;                  //   不繼續搜尋，直接返回。
-  printf("%d=>", node);      // 印出節點
+  printf('%d=>', node);      // 印出節點
   var neighbors = g[node].n; // 取出鄰居。
   for (var i in neighbors) { // 對於每個鄰居
     var n = neighbors[i];
@@ -49,6 +49,6 @@ function bfs(g, q) { // 廣度優先搜尋
   bfs(g, q);
 }
 
-printf("dfs:"); init(g); dfs(g, 1); printf("\n");     // 呼叫深度優先搜尋。
-printf("bfs:"); init(g); bfs(g, queue); printf("\n"); // 呼叫廣度優先搜尋。
+printf('dfs:'); init(g); dfs(g, 1); printf('\n');     // 呼叫深度優先搜尋。
+printf('bfs:'); init(g); bfs(g, queue); printf('\n'); // 呼叫廣度優先搜尋。
 

@@ -1,11 +1,11 @@
-var util = require("util");
+var util = require('util');
 var log = console.log;
 var up = 1, right=2, down=3, left=4;
 
 function enqueue(a, o) { a.push(o); }
 function dequeue(a) { return a.shift(); }
 function equal(a, b) { return JSON.stringify(a)===JSON.stringify(b); }
-function board2str(b) { return b.join("\n"); }
+function board2str(b) { return b.join('\n'); }
 
 function findXY(board, value) {
   for (var x=0; x<board.length; x++)
@@ -73,28 +73,28 @@ var start= [[1,3,4],
             [8,2,5],
             [7,0,6]];
 
-var queue=[start];            // BFS 用的 queue, 起始點為 1。
+var queue=[start]; // BFS 用的 queue, 起始點為 1。
 var visited={};
 var parent={};
 var level={};
 
 function bfs(q, goal) { // 廣度優先搜尋
   while (q.length > 0) {
-    var node = dequeue(q);     // 否則、取出 queue 的第一個節點。
+    var node = dequeue(q); // 否則、取出 queue 的第一個節點。
     var nodestr = board2str(node);
-//  log("q.length=%d level=%d\n===node===\n%s==parent==\n%s", q.length, level[nodestr], nodestr, parent[nodestr]); // 印出節點
+//  log('q.length=%d level=%d\n===node===\n%s==parent==\n%s', q.length, level[nodestr], nodestr, parent[nodestr]); // 印出節點
     if (equal(node, goal)) return true;
-    if (visited[nodestr]===undefined)        // 如果該節點尚未拜訪過。
-      visited[nodestr] = true; //   標示為已拜訪
-    else                       // 否則 (已訪問過)
-      continue;                //   不繼續搜尋，直接返回。
+    if (visited[nodestr]===undefined) // 如果該節點尚未拜訪過。
+      visited[nodestr] = true;        //   標示為已拜訪
+    else                              // 否則 (已訪問過)
+      continue;                       //   不繼續搜尋，直接返回。
     var neighbors = getNeighbors(node); // 取出鄰居。
-    for (var i in neighbors) { // 對於每個鄰居
+    for (var i in neighbors) {        // 對於每個鄰居
       var n = neighbors[i];
       var nstr = board2str(n);
       if (!visited[nstr]) {    // 假如該鄰居還沒被拜訪過
         parent[nstr] = nodestr;
-	level[nstr] = level[nodestr] + 1;
+        level[nstr] = level[nodestr] + 1;
         enqueue(q, n);         //   就放入 queue 中
       }
     }
@@ -103,16 +103,16 @@ function bfs(q, goal) { // 廣度優先搜尋
 }
 
 function backtrace(goal) {
-  log("======= backtrace =========");
+  log('======= backtrace =========');
   var nodestr = board2str(goal);
   while (nodestr !== undefined) {
-    log("%s\n", nodestr);
+    log('%s\n', nodestr);
     nodestr = parent[nodestr];
   }
 }
 
 level[board2str(start)]=0;
 var found = bfs(queue, goal); // 呼叫廣度優先搜尋。
-log("bfs:found=%s", found);
+log('bfs:found=%s', found);
 if (found)
   backtrace(goal);

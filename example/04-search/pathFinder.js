@@ -10,8 +10,8 @@ function strset(s, i, c) {
 }
 
 function findPath(m, x, y) {
-  log("=========================");
-  log("x="+x+" y="+y);
+  log('=========================');
+  log('x='+x+' y='+y);
   matrixPrint(m);
   if (x>=6||y>=8) return false;
   if (m[x][y] == '*') return false;
@@ -19,25 +19,25 @@ function findPath(m, x, y) {
   if (m[x][y] == ' ') m[x] = strset(m[x], y, '.');
   if (m[x][y] == '.' && (x == 5 || y==7)) 
     return true;
-  if (y<7&&m[x][y+1]==' ') //¶V•k
+  if (y<7&&m[x][y+1]==' ') //ÂêëÂè≥
     if (findPath(m, x,y+1)) return true;
-  if(x<5&&m[x+1][y]==' ') //¶V§U
+  if(x<5&&m[x+1][y]==' ') //Âêë‰∏ã
     if (findPath(m, x+1,y)) return true;
-  if(y>0&&m[x][y-1]==' ') //¶V•™
+  if(y>0&&m[x][y-1]==' ') //ÂêëÂ∑¶
     if (findPath(m, x,y-1)) return true;
-  if(x>0&&m[x-1][y]==' ') //¶V§W
+  if(x>0&&m[x-1][y]==' ') //Âêë‰∏ä
     if (findPath(m, x-1,y)) return true;
   m[x][y]='+';
   return false;
 }
 
-var m =["********", 
-        "** * ***",
-        "     ***",
-        "* ******",
-        "*     **",
-        "***** **"];
+var m =['********', 
+        '** * ***',
+        '     ***',
+        '* ******',
+        '*     **',
+        '***** **'];
 	
 findPath(m, 2, 0);
-log("=========================");
+log('=========================');
 matrixPrint(m);
