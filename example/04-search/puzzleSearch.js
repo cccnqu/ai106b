@@ -32,16 +32,16 @@ function swap(b,x1,y1,x2,y2) {
   return true;
 }
 
-function move(board, dir) {
-  var xy = findXY(board, 0);
+function move(board, dir) { // 加入所有可能的移動方式
+  var xy = findXY(board, 0); // 找出空格 0 的位置
   var x = xy.x, y=xy.y;
   var nboard = boardClone(board);
   var s = false;
   switch (dir) {
-    case up:    s=swap(nboard,x,y,x-1,y); break;
-    case right: s=swap(nboard,x,y,x,y+1); break;
-    case down:  s=swap(nboard,x,y,x+1,y); break;
-    case left:  s=swap(nboard,x,y,x,y-1); break;
+    case up:    s=swap(nboard,x,y,x-1,y); break; // 空格和上面一格交換
+    case right: s=swap(nboard,x,y,x,y+1); break; // 空格和右邊一格交換
+    case down:  s=swap(nboard,x,y,x+1,y); break; // 空格和下面一格交換
+    case left:  s=swap(nboard,x,y,x,y-1); break; // 空格和左邊一格交換
   }
   if (s)
     return nboard;
@@ -49,14 +49,14 @@ function move(board, dir) {
     return null;
 }
 
-function moveAdd(board, dir, neighbors) {
+function moveAdd(board, dir, neighbors) { // 向 dir 方向移動，並加入到 neighbors 陣列中
   var nboard = move(board, dir);
   if (nboard !== null) {
     neighbors.push(nboard);
   }
 }
 
-function getNeighbors(board) {
+function getNeighbors(board) { // 取得所有鄰居
   var neighbors = [];
   moveAdd(board, up,    neighbors);
   moveAdd(board, down,  neighbors);
