@@ -1,5 +1,5 @@
 var c = console;
-var objs = ["人", "狼", "羊", "菜"];
+var objs = ['人', '狼', '羊', '菜'];
 var state= [   0,  0 ,   0,    0 ];
 
 function neighbors(s) {
@@ -50,9 +50,9 @@ function isSuccess(s) {
 }
 
 function state2str(s) {
-    var str = "";
+    var str = '';
     for (var i=0; i<s.length; i++) {
-        str += objs[i]+s[i]+" ";
+        str += objs[i]+s[i]+' ';
     }
     return str;
 }
@@ -69,7 +69,7 @@ function dfs(s) {
   path.push(s);
 //  c.log('visit:', state2str(s));
   if (isSuccess(s)) {
-      c.log("success!");
+      c.log('success!');
       printPath(path);
       return;
   }

@@ -1,4 +1,4 @@
-var util = require("util");
+var util = require('util');
 
 var printf = function() {
   return process.stdout.write(util.format.apply(null, arguments)); 
@@ -7,8 +7,8 @@ var printf = function() {
 function enqueue(a, o) { a.push(o); }
 function dequeue(a) { return a.shift(); }
 
-var g = {            // graph: ³Q·j´Mªººô¸ô
-  1: {n:[2,5], v:0}, // n: neighbor (¾F©~), v: visited (¬O§_³Q³X°İ¹L)
+var g = {            // graph: è¢«æœå°‹çš„ç¶²è·¯
+  1: {n:[2,5], v:0}, // n: neighbor (é„°å±…), v: visited (æ˜¯å¦è¢«è¨ªå•é)
   2: {n:[3,4], v:0},
   3: {n:[4,5,6], v:0},
   4: {n:[5,6], v:0},
@@ -16,39 +16,39 @@ var g = {            // graph: ³Q·j´Mªººô¸ô
   6: {n:[], v:0}
 };
 
-function init(g) { // ªì©l¤Æ¡B³]©w visited ¬° 0
+function init(g) { // åˆå§‹åŒ–ã€è¨­å®š visited ç‚º 0
   for (i in g) g[i].v = 0;
 }
 
-function dfs(g, node) { // ²`«×Àu¥ı·j´M
-  if (g[node].v !=0) return;   // ¦pªG¤w³X°İ¹L¡A´N¤£¦A³X°İ
-  printf("%d=>", node);       // §_«h¡B¦L¥X¸`ÂI
-  g[node].v = 1;              //   ¨Ã³]©w¬°¤w³X°İ
-  var neighbors = g[node].n;  // ¨ú¥X¾F©~¸`ÂI
-  for (var i in neighbors) {  // ¹ï©ó¨C­Ó¾F©~
-    dfs(g, neighbors[i]);     //   ³v¤@¶i¦æ³X°İ
+function dfs(g, node) { // æ·±åº¦å„ªå…ˆæœå°‹
+  if (g[node].v !=0) return;   // å¦‚æœå·²è¨ªå•éï¼Œå°±ä¸å†è¨ªå•
+  printf('%d=>', node);       // å¦å‰‡ã€å°å‡ºç¯€é»
+  g[node].v = 1;              //   ä¸¦è¨­å®šç‚ºå·²è¨ªå•
+  var neighbors = g[node].n;  // å–å‡ºé„°å±…ç¯€é»
+  for (var i in neighbors) {  // å°æ–¼æ¯å€‹é„°å±…
+    dfs(g, neighbors[i]);     //   é€ä¸€é€²è¡Œè¨ªå•
   }
 }
 
-var queue=[1];            // BFS ¥Îªº queue, °_©lÂI¬° 1¡C
+var queue=[1];            // BFS ç”¨çš„ queue, èµ·å§‹é»ç‚º 1ã€‚
 
-function bfs(g, q) { // ¼s«×Àu¥ı·j´M
-  if (q.length == 0) return; // ¦pªG queue ¤wªÅ¡A«hªğ¦^¡C
-  var node = dequeue(q);     // §_«h¡B¨ú¥X queue ªº²Ä¤@­Ó¸`ÂI¡C
-  if (g[node].v == 0)        // ¦pªG¸Ó¸`ÂI©|¥¼«ô³X¹L¡C
-    g[node].v = 1;           //   ¼Ğ¥Ü¬°¤w«ô³X
-  else                       // §_«h (¤w³X°İ¹L)
-    return;                  //   ¤£Ä~Äò·j´M¡Aª½±µªğ¦^¡C
-  printf("%d=>", node);      // ¦L¥X¸`ÂI
-  var neighbors = g[node].n; // ¨ú¥X¾F©~¡C
-  for (var i in neighbors) { // ¹ï©ó¨C­Ó¾F©~
+function bfs(g, q) { // å»£åº¦å„ªå…ˆæœå°‹
+  if (q.length == 0) return; // å¦‚æœ queue å·²ç©ºï¼Œå‰‡è¿”å›ã€‚
+  var node = dequeue(q);     // å¦å‰‡ã€å–å‡º queue çš„ç¬¬ä¸€å€‹ç¯€é»ã€‚
+  if (g[node].v == 0)        // å¦‚æœè©²ç¯€é»å°šæœªæ‹œè¨ªéã€‚
+    g[node].v = 1;           //   æ¨™ç¤ºç‚ºå·²æ‹œè¨ª
+  else                       // å¦å‰‡ (å·²è¨ªå•é)
+    return;                  //   ä¸ç¹¼çºŒæœå°‹ï¼Œç›´æ¥è¿”å›ã€‚
+  printf('%d=>', node);      // å°å‡ºç¯€é»
+  var neighbors = g[node].n; // å–å‡ºé„°å±…ã€‚
+  for (var i in neighbors) { // å°æ–¼æ¯å€‹é„°å±…
     var n = neighbors[i];
-    if (!g[n].visited)       // °²¦p¸Ó¾F©~ÁÙ¨S³Q«ô³X¹L
-      q.push(n);             //   ´N©ñ¤J queue ¤¤
+    if (!g[n].visited)       // å‡å¦‚è©²é„°å±…é‚„æ²’è¢«æ‹œè¨ªé
+      q.push(n);             //   å°±æ”¾å…¥ queue ä¸­
   }
   bfs(g, q);
 }
 
-printf("dfs:"); init(g); dfs(g, 1); printf("\n");     // ©I¥s²`«×Àu¥ı·j´M¡C
-printf("bfs:"); init(g); bfs(g, queue); printf("\n"); // ©I¥s¼s«×Àu¥ı·j´M¡C
+printf('dfs:'); init(g); dfs(g, 1); printf('\n');     // å‘¼å«æ·±åº¦å„ªå…ˆæœå°‹ã€‚
+printf('bfs:'); init(g); bfs(g, queue); printf('\n'); // å‘¼å«å»£åº¦å„ªå…ˆæœå°‹ã€‚
 
