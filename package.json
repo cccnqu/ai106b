@@ -14,6 +14,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "publish": "npm run build&&git add -A&&git commit -m \"upload\"&&git push origin master",
     "build": "gulp --gulpfile ext2md/gulpfile.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
