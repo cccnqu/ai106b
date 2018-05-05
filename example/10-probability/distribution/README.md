@@ -17,7 +17,7 @@
 
 其累積密度函數為 <img src="https://latex.codecogs.com/gif.latex?F(x)%20%3D%201-e%5E%7B-%5Clambda%7D%20x"/> ， 
 
-Ｆ的逆變換為 <img src="https://latex.codecogs.com/gif.latex?F%7B-1%7D%20%3D%20%5Cfrac%7B-1%7D%7B%5Clambda%7D%20log(1-U)"/>
+Ｆ的逆變換為 <img src="https://latex.codecogs.com/gif.latex?F%5E%7B-1%7D%20%3D%20%5Cfrac%7B-1%7D%7B%5Clambda%7D%20log(1-U)"/>
 
-因此我們可以用 <img src="https://latex.codecogs.com/gif.latex?F%7B-1%7D"/> 來產生該分佈的樣本。
+因此我們可以用 <img src="https://latex.codecogs.com/gif.latex?F%5E%7B-1%7D"/> 來產生該分佈的樣本。
 
