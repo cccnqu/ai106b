@@ -1,0 +1,42 @@
+<html>
+<head>
+<style>
+* { margin: 5px; padding: 5px; font-family: Tahoma; }
+h1 { font-family: 標楷體, Tahoma; }
+select { width: 20em; }
+textarea { width: 20em; height: 100px; }
+div, button { float: left; }
+button { margin-top: 15px; }
+</style>
+</head>
+<body>
+<h1>道本語翻譯系統</h1>
+<div>
+  <select id="s">
+    <option value="tp">TokiPona</option>
+    <option value="en">English</option>
+    <option value="tc" selected>中文</option>
+  </select><br/>
+  <textarea id="source">你 死 e 蟲 小</textarea>      
+</div>
+<button onclick="mt()">翻譯</button>
+<div>
+  <select id="t">
+    <option value="tp" selected>TokiPona</option>
+    <option value="en">English</option>
+    <option value="tc">中文</option>
+  </select><br/>
+  <textarea id="target"></textarea>
+</div>
+<script src="tokipona.js"></script>
+<script>
+  function mt() {
+    let source = document.getElementById('source')
+    let target = document.getElementById('target')
+    let s = document.getElementById('s').value
+    let t = document.getElementById('t').value
+    target.value = TP.mtText(source.value, s, t)
+  }
+</script>
+</body>
+</html>
