@@ -124,4 +124,4 @@ o|o|o|o|c|
 1|1|1|wan|N|
 2|2|2|tu|N|`
 
-TP.load(['en', 'tc', 'tp'], TP.mdo)
+TP.load(['en', 'tc', 'sc', 'tp'], TP.mdo)

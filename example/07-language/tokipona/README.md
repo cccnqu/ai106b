@@ -1,9 +1,14 @@
 # TokiPona 道本語
 
+## 網頁版翻譯
+
+* 展示網址 -- https://rawgit.com/cccnqu/ai106b/master/example/07-language/tokipona/web/tokipona.html
+
+
 ## 命令列翻譯
 
 ```
-$ node mt tc tp 我 食 e 果
+$ node mtLine tc tp 我 食 e 果
 [ 'mi', 'moku', 'e', 'kili' ]
 ```
 
