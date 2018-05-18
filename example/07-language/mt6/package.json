@@ -1,0 +1,33 @@
+{
+  "name": "mt6",
+  "version": "0.3.0",
+  "description": "Machine Translation (Generate, Learning, Translate)",
+  "main": "lib/grammar.js",
+  "dependencies": {
+    "rlab": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "browserify web/_mt6.js -o web/mt6.js && node server/staticServer",
+    "test": "mocha"
+  },
+  "bin": {},
+  "keywords": [
+    "chinese",
+    "english",
+    "convert",
+    "BNF",
+    "translation",
+    "langugage"
+  ],
+  "homepage": "https://github.com/ccckmit/mt6.git",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ccckmit/mt6.git"
+  },
+  "author": {
+    "name": "Chung-Chen Chen",
+    "email": "ccckmit@gmail.com"
+  },
+  "license": "MIT"
+}

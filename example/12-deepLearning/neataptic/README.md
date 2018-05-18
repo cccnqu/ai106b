@@ -347,3 +347,37 @@ a+(b+a)
 (a+b)+(b+a)+b
 (a+(b+a
 ```
+
+### 範例 4 : 用 BYTE 為單位學習語句的產生
+
+訓練：
+
+```
+$ node lstmTrain data/cdog.txt cdog_byte.lstm.json byte
+seqText="一隻狗\r\n小狗\r\n小黑狗\r\n黑狗\r\n一隻小黑狗\r\n一隻小狗"
+words = ["[#start#]",78,0,150,187,114,215,13,10,92,15,158,209]
+Network conns 1521 nodes 78
+iteration 1 error 0.09196773780977215 rate 0.1
+iteration 2 error 0.06555417625800918 rate 0.1
+iteration 3 error 0.06074783949341407 rate 0.1
+iteration 4 error 0.05599200588842217 rate 0.1
+iteration 5 error 0.051531505760620266 rate 0.1
+iteration 6 error 0.047561950516410684 rate 0.1
+iteration 7 error 0.04414691109548277 rate 0.1
+iteration 8 error 0.041250319389647176 rate 0.1
+iteration 9 error 0.03880025583677573 rate 0.1
+iteration 10 error 0.0367249893468852 rate 0.1
+iteration 11 error 0.0349629383524313 rate 0.1
+iteration 12 error 0.03346294434299365 rate 0.1
+iteration 13 error 0.03218256379194919 rate 0.1
+
+$ node lstmPredict cdog_byte.lstm.json
+======== gen (prefix=[]) ===========
+ 뭲휀ഀ੎뭜ི휀ഀ੎뭜ི휀ഀ੎뭜ི휀ഀ੎
+小黑狗
+一隻小狗
+一隻小狗
+一隻小狗
+一隻
+```
+

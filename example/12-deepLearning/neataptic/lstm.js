@@ -21,6 +21,16 @@ LSTM.text2chars = function (text) {
   return text.split('')
 }
 
+LSTM.text2bytes = function (text) {
+  var bytes = [] 
+  for (var i = 0; i < text.length; ++i) {
+    var code = text.charCodeAt(i);
+    // bytes = bytes.concat([code]);
+    bytes = bytes.concat([code / 256 >>> 0, code & 0xff])
+  }
+  return bytes
+}
+
 LSTM.words2set = function (words) {
   var wordSet = new Set()
   for (let word of words) {
@@ -79,7 +89,9 @@ LSTM.prob2word = function (tProb, words, vecWordMap) {
 
 LSTM.train = function (seqText) {
   console.log('seqText=%j', seqText)
-  var seqWords = (LSTM.mode === 'char') ? LSTM.text2chars(seqText) : LSTM.text2words(seqText)
+  var seqWords = (LSTM.mode === 'char') ? LSTM.text2chars(seqText) 
+               : (LSTM.mode === 'byte')? LSTM.text2bytes(seqText)
+              : LSTM.text2words(seqText)
   seqWords = [LSTM.startWord].concat(seqWords)
   var wordSet = LSTM.words2set(seqWords)
   LSTM.words = Array.from(wordSet)
@@ -113,11 +125,21 @@ LSTM.genSentence = function (sWords, stops = [], maxLen = 10) {
   return genList
 }
 
+LSTM.bytes2str = function (list) {
+  var clist = []
+  for (let i=0; i<list.length; i+=2) {
+    clist.push(String.fromCharCode(list[i] * 256 + list[i+1]))
+  }
+  return clist.join('')
+}
+
 LSTM.genLines = function (sLines, stops = [], maxLen = 100, postTriggers = [], preTrigger = []) {
   for (let line of sLines) {
     let prefix = preTrigger.concat(LSTM.text2words(line)).concat(postTriggers)
     var genList = LSTM.genSentence(prefix, stops, maxLen)
-    var genText = (LSTM.mode === 'char') ? genList.join('') : genList.join(' ')
+    var genText = (LSTM.mode === 'char') ? genList.join('') 
+                : (LSTM.mode==='word') ? genList.join(' ')
+                : /*(LSTM.mode==='byte') ?*/ LSTM.bytes2str(genList)
     console.log('======== gen (prefix=%j) ===========', prefix)
     console.log('%s', genText)
   }
