@@ -20,6 +20,7 @@ const P = {
 }
 
 function viterbi(obs, states, P) {
+  console.log('觀察到的序列=', obs)
   const T = [{}] // Viterbi Table
   let path = {}  // path[state] = 從 0 到 t 到達 state 機率最大的 path
   for (let y of states) { // # Initialize base cases (t == 0)
@@ -47,4 +48,4 @@ function viterbi(obs, states, P) {
 }
 
 let {prob, path} = viterbi('喵 喵 汪'.split(' '), ['N', 'V'], P)
-console.log('prob=%d path=%j', prob, path)
+console.log('prob=%d path=%j＝最可能的隱序列', prob, path)
