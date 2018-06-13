@@ -5,5 +5,5 @@ var argv = process.argv
 var maxLen = (argv.length >= 4) ? parseInt(argv[3]) : 100
 var json = fs.readFileSync(process.argv[2])
 LSTM.fromJSON(json)
-var sLines = ['']
+var sLines = ['', '\n']
 LSTM.genLines(sLines, [], maxLen)
