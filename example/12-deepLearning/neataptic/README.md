@@ -31,10 +31,7 @@ LSTM 語句產生 | [lstmCbyc.js] | 學習並重複產生該語句 (ex: Am I con
 ## 安裝方法
 
 ```
-$ git clone https://github.com/ccckmit/ai6.git
-$ cd ai6
-$ npm install
-$ cd book/nn/neataptic
+$ npm i neataptic
 ```
 
 然後你就可以開始執行下列範例了！

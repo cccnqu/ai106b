@@ -1,5 +1,5 @@
 var neataptic = require('neataptic')
-var net = new neataptic.Architect.LSTM(1, 6, 1)
+var net = new neataptic.architect.LSTM(1, 6, 1)
 
 // Train a sequence: 000100010001....
 var trainData = [
