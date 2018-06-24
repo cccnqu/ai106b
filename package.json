@@ -7,10 +7,15 @@
     "example": "example"
   },
   "dependencies": {
+    "convnetjs": "^0.3.0",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.6.1",
+<<<<<<< HEAD
     "j6": "^1.0.2",
+=======
+    "jimp": "^0.2.28",
+>>>>>>> 6b66a2ebfad3f5b8be409f8f7697840d938293a8
     "mdo": "^1.0.5",
     "neataptic": "^1.4.7"
   },

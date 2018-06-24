@@ -18,13 +18,8 @@
 
 ## 安裝方法
 
-注意：您必須先更新 node.js 到 7.6 版之後，因為這些範例有用 async/await 的新語法，必須要新版的 node.js 。
-
 ```
-$ git clone https://github.com/ccckmit/ai6.git
-$ cd ai6
-$ npm install
-$ cd book/nn/convnetjs
+$ npm i convnetjs
 ```
 
 然後你就可以開始執行下列範例了！
